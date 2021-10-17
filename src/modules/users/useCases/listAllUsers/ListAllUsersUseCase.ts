@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -9,8 +10,14 @@ class ListAllUsersUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
   execute({ user_id }: IRequest): User[] {
-    // Complete aqui
+   const user =this.usersRepository.findById(user_id)
+    if(user.admin === true){
+   return this.usersRepository.list();
   }
+    
+    throw new Error("User is not a admin");
+    
+}
 }
 
 export { ListAllUsersUseCase };
