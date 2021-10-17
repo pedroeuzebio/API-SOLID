@@ -14,7 +14,7 @@ class ListAllUsersUseCase {
     if(user.admin === true){
    return this.usersRepository.list();
   }
-    
+ 
     throw new Error("User is not a admin");
     
 }
